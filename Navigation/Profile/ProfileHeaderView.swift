@@ -14,7 +14,7 @@ class ProfileHeaderView: UIView {
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 4
+        imageView.layer.cornerRadius = 50
         imageView.clipsToBounds = true
         return imageView
     } ()
@@ -35,6 +35,14 @@ class ProfileHeaderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private lazy var statusTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.backgroundColor = .white
+        return textField
+    }()
+        
     
     private lazy var showStatusButton: UIButton = {
        let button = UIButton()
@@ -65,6 +73,7 @@ class ProfileHeaderView: UIView {
         addSubview(nameLabel)
         addSubview(statusLabel)
         addSubview(showStatusButton)
+        addSubview(statusTextField)
         
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -80,15 +89,20 @@ class ProfileHeaderView: UIView {
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
-            showStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
+            showStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
             showStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             showStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            showStatusButton.heightAnchor.constraint(equalToConstant: 50)
+            showStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 8),
+            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            statusTextField.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
     @objc func showStatus() {
-        print(statusLabel.text)
+        print(statusLabel.text ?? "")
     }
 }
 
