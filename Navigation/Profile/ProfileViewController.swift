@@ -1,13 +1,8 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
    let profileHeaderView = ProfileHeaderView()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .lightGray
-        title = "Profile"
-        setupView()
-    }
     
     private lazy var button: UIButton = {
         let button = UIButton()
@@ -16,6 +11,13 @@ class ProfileViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .lightGray
+        title = "Profile"
+        setupView()
+    }
     
     private func setupView() {
         view.addSubview(profileHeaderView)

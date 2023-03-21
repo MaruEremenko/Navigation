@@ -40,6 +40,10 @@ class ProfileHeaderView: UIView {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .white
+        textField.layer.cornerRadius = 12
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderWidth = 1
+        textField.placeholder = "Type status"
         return textField
     }()
         
@@ -48,10 +52,9 @@ class ProfileHeaderView: UIView {
        let button = UIButton()
         button.setTitle("Show status", for: .normal)
         button.layer.cornerRadius = 4
-        button.layer.masksToBounds = true
         button.layer.shadowOffset.width = 4
         button.layer.shadowOffset.height = 4
-        button.layer.shadowRadius = 30
+        button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
         button.translatesAutoresizingMaskIntoConstraints = false
