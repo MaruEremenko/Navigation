@@ -8,8 +8,8 @@ class MainTabBarController: UITabBarController {
     }
 
     func setupControllers() {
-        let feedVC = createController(viewController: FeedViewController(), itemName: "Новости", ItemImage: "newspaper")
-        let profileVC = createController(viewController: ProfileViewController(), itemName: "Авторизация", ItemImage: "person.circle")
+        let feedVC = createController(viewController: FeedViewController(), itemName: "News", ItemImage: "newspaper")
+        let profileVC = createController(viewController: ProfileViewController(), itemName: "Profile", ItemImage: "person.circle")
         viewControllers = [feedVC, profileVC]
     }
 

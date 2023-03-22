@@ -14,7 +14,7 @@ class ProfileHeaderView: UIView {
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 4
+        imageView.layer.cornerRadius = 50
         imageView.clipsToBounds = true
         return imageView
     } ()
@@ -40,10 +40,9 @@ class ProfileHeaderView: UIView {
        let button = UIButton()
         button.setTitle("Show status", for: .normal)
         button.layer.cornerRadius = 4
-        button.layer.masksToBounds = true
         button.layer.shadowOffset.width = 4
         button.layer.shadowOffset.height = 4
-        button.layer.shadowRadius = 30
+        button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -88,7 +87,7 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func showStatus() {
-        print(statusLabel.text)
+        print(statusLabel.text ?? "")
     }
 }
 
