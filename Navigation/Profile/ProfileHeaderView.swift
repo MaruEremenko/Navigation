@@ -36,6 +36,18 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
+    private lazy var statusTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 12
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderWidth = 1
+        textField.placeholder = "Type status"
+        return textField
+    }()
+        
+    
     private lazy var showStatusButton: UIButton = {
        let button = UIButton()
         button.setTitle("Show status", for: .normal)
@@ -64,6 +76,7 @@ class ProfileHeaderView: UIView {
         addSubview(nameLabel)
         addSubview(statusLabel)
         addSubview(showStatusButton)
+        addSubview(statusTextField)
         
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -79,10 +92,15 @@ class ProfileHeaderView: UIView {
             statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
-            showStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
+            showStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
             showStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             showStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            showStatusButton.heightAnchor.constraint(equalToConstant: 50)
+            showStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 8),
+            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            statusTextField.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
