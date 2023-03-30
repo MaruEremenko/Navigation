@@ -4,6 +4,7 @@ class MainTabBarController: UITabBarController {
     
     private let profile = ProfileViewController()
     private let newsFeed = FeedViewController()
+    private let login = LogInViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,17 +13,18 @@ class MainTabBarController: UITabBarController {
     }
 
     func setupControllers() {
-        let navigationProfile = UINavigationController(rootViewController: profile)
+        let navigationLogin = UINavigationController(rootViewController: login)
         let navigationNewsFeed = UINavigationController(rootViewController: newsFeed)
         
-        profile.tabBarItem.title = "Profile"
-        profile.tabBarItem.image = UIImage(systemName: "folder")
+        login.tabBarItem.title = "Profile"
+        login.tabBarItem.image = UIImage(systemName: "folder")
+        navigationLogin.navigationBar.isHidden = true
     
         newsFeed.tabBarItem.title = "Feed"
         newsFeed.tabBarItem.image = UIImage(systemName: "note")
         
     
         
-        viewControllers = [navigationNewsFeed, navigationProfile]
+        viewControllers = [navigationNewsFeed, navigationLogin]
     }
 }
