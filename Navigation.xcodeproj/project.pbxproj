@@ -18,6 +18,7 @@
 		207E2B1F29892C94006E6DFE /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E2B1E29892C94006E6DFE /* Post.swift */; };
 		207E2B2229892E14006E6DFE /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E2B2129892E14006E6DFE /* InfoViewController.swift */; };
 		CB1778C629D5DDE000F4DBD1 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1778C529D5DDE000F4DBD1 /* LogInViewController.swift */; };
+		CB1778C829D7332800F4DBD1 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1778C729D7332800F4DBD1 /* CustomTextFieldView.swift */; };
 		CB26915829AF7FA20041DE94 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB26915729AF7FA20041DE94 /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		207E2B1E29892C94006E6DFE /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		207E2B2129892E14006E6DFE /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		CB1778C529D5DDE000F4DBD1 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		CB1778C729D7332800F4DBD1 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		CB26915729AF7FA20041DE94 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 				200AB8DE298557DD00F4CBA0 /* ProfileViewController.swift */,
 				CB26915729AF7FA20041DE94 /* ProfileHeaderView.swift */,
 				CB1778C529D5DDE000F4DBD1 /* LogInViewController.swift */,
+				CB1778C729D7332800F4DBD1 /* CustomTextFieldView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				207E2B1D29892B14006E6DFE /* PostViewController.swift in Sources */,
+				CB1778C829D7332800F4DBD1 /* CustomTextFieldView.swift in Sources */,
 				200AB8CF298557A400F4CBA0 /* FeedViewController.swift in Sources */,
 				200AB8CB298557A400F4CBA0 /* AppDelegate.swift in Sources */,
 				200AB8E12985581800F4CBA0 /* MainTabBarController.swift in Sources */,
