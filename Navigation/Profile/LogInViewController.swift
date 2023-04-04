@@ -35,6 +35,7 @@ class LogInViewController: UIViewController {
     
     private lazy var loginTextField: CustomTextFieldView = {
         let textField = CustomTextFieldView()
+        textField.isUserInteractionEnabled = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .systemGray6
         textField.roundCorners(corners: [.topLeft, .topRight], radius: 10)
@@ -49,6 +50,7 @@ class LogInViewController: UIViewController {
     
     private lazy var passwordTextField: CustomTextFieldView = {
         let textField = CustomTextFieldView()
+        textField.isUserInteractionEnabled = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .systemGray6
         textField.roundCorners(corners: [.bottomRight, .bottomLeft], radius: 10)
@@ -127,10 +129,11 @@ class LogInViewController: UIViewController {
         contentView.addSubview(passwordTextField)
         contentView.addSubview(logInButton)
         NSLayoutConstraint.activate([
+            
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
             
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -139,7 +142,7 @@ class LogInViewController: UIViewController {
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            vkLogo.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 120),
+            vkLogo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             vkLogo.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             vkLogo.widthAnchor.constraint(equalToConstant: 100),
             vkLogo.heightAnchor.constraint(equalToConstant: 100),
@@ -157,6 +160,7 @@ class LogInViewController: UIViewController {
             logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             logInButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
