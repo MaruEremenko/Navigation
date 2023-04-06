@@ -6,7 +6,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    private let post = Post(title: "Some post")
+    private let post = PostOld(title: "Some post")
     
     private let button = UIButton()
 

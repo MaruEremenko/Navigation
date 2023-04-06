@@ -5,6 +5,7 @@
 
 import Foundation
 
-struct Post {
+struct PostOld {
     let title: String
+    
 }

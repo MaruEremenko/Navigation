@@ -2,41 +2,76 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-   let profileHeaderView = ProfileHeaderView()
+    let arrayPosts: [Post] = [
+        Post(
+            author: "Hipster Tom",
+            description: "Hi, everyone!",
+            image: "logo",
+            likes: 2,
+            views: 2
+        ),
+        Post(
+            author: "Hipster Tom",
+            description: "My avatar image",
+            image: "Tom",
+            likes: 5,
+            views: 5
+        ),
+        Post(
+            author: "Hipster Tom",
+            description: "Love my cat Goirno",
+            image: "Cat1",
+            likes: 7,
+            views: 7
+        ),
+        Post(
+            author: "Hipster Tom",
+            description: "Love my cat Richard",
+            image: "Cat2",
+            likes: 7,
+            views: 7
+        )
+    ]
     
-    private lazy var button: UIButton = {
-        let button = UIButton()
-        button.setTitle("New button", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    let table: UITableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
-        title = "Profile"
-        setupView()
+        table.delegate = self
+        table.dataSource = self
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+//        table.register(ProfileTableHeaderView.self,
+//               forHeaderFooterViewReuseIdentifier: "sectionHeader")
+        setupViews()
+        
     }
     
-    private func setupView() {
-        view.addSubview(profileHeaderView)
-        view.addSubview(button)
+    private func setupViews() {
+        view.addSubview(table)
+        table.backgroundColor = .lightGray
+        table.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-            
-            button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            button.heightAnchor.constraint(equalToConstant: 50)
+            table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            table.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            table.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            table.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         ])
-        
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
     }
- 
+    
+}
+
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        arrayPosts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = arrayPosts[indexPath.row].description
+        cell.imageView?.image = UIImage(named: arrayPosts [indexPath.row].image)
+        return cell
+    }
+
 }
 
 

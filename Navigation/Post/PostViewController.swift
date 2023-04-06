@@ -6,7 +6,7 @@
 import UIKit
 
 class PostViewController: UIViewController {
-    private var post: Post?
+    private var post: PostOld?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +15,7 @@ class PostViewController: UIViewController {
         setupNavigationBar()
     }
     
-    func setPost(post: Post) {
+    func setPost(post: PostOld) {
         self.post = post
     }
     
