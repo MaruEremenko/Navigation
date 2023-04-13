@@ -33,15 +33,13 @@ class ProfileViewController: UIViewController {
         )
     ]
     
-    let table: UITableView = UITableView()
+    let table: UITableView = UITableView(frame: .zero, style: .grouped)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         table.delegate = self
         table.dataSource = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-//        table.register(ProfileTableHeaderView.self,
-//               forHeaderFooterViewReuseIdentifier: "sectionHeader")
+        self.table.register(ProfileTableViewCell.self, forCellReuseIdentifier: "profileTableViewCell")
         setupViews()
         
     }
@@ -66,12 +64,20 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = arrayPosts[indexPath.row].description
-        cell.imageView?.image = UIImage(named: arrayPosts [indexPath.row].image)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "profileTableViewCell", for: indexPath) as! ProfileTableViewCell
+        cell.fillCell(post: arrayPosts[indexPath.row])
         return cell
     }
 
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return ProfileTableHeaderView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 220
+    }
+    
+    
 }
 
 

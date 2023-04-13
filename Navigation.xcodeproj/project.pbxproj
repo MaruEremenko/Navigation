@@ -21,6 +21,7 @@
 		CB1778C829D7332800F4DBD1 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1778C729D7332800F4DBD1 /* CustomTextFieldView.swift */; };
 		CB1778CA29DF0BC300F4DBD1 /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1778C929DF0BC300F4DBD1 /* ProfileTableHeaderView.swift */; };
 		CB1778CC29DF0ED200F4DBD1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1778CB29DF0ED200F4DBD1 /* Post.swift */; };
+		CB1778CE29E6F43A00F4DBD1 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1778CD29E6F43A00F4DBD1 /* ProfileTableViewCell.swift */; };
 		CB26915829AF7FA20041DE94 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB26915729AF7FA20041DE94 /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		CB1778C729D7332800F4DBD1 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		CB1778C929DF0BC300F4DBD1 /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
 		CB1778CB29DF0ED200F4DBD1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		CB1778CD29E6F43A00F4DBD1 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CB26915729AF7FA20041DE94 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +116,7 @@
 				CB1778C729D7332800F4DBD1 /* CustomTextFieldView.swift */,
 				CB1778C929DF0BC300F4DBD1 /* ProfileTableHeaderView.swift */,
 				CB1778CB29DF0ED200F4DBD1 /* Post.swift */,
+				CB1778CD29E6F43A00F4DBD1 /* ProfileTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				207E2B1D29892B14006E6DFE /* PostViewController.swift in Sources */,
+				CB1778CE29E6F43A00F4DBD1 /* ProfileTableViewCell.swift in Sources */,
 				CB1778C829D7332800F4DBD1 /* CustomTextFieldView.swift in Sources */,
 				200AB8CF298557A400F4CBA0 /* FeedViewController.swift in Sources */,
 				200AB8CB298557A400F4CBA0 /* AppDelegate.swift in Sources */,
