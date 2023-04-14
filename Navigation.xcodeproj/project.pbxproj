@@ -23,6 +23,8 @@
 		CB1778CC29DF0ED200F4DBD1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1778CB29DF0ED200F4DBD1 /* Post.swift */; };
 		CB1778CE29E6F43A00F4DBD1 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1778CD29E6F43A00F4DBD1 /* ProfileTableViewCell.swift */; };
 		CB26915829AF7FA20041DE94 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB26915729AF7FA20041DE94 /* ProfileHeaderView.swift */; };
+		CB3A6E2329E9D9AB00BBDAF0 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A6E2229E9D9AB00BBDAF0 /* PhotosViewController.swift */; };
+		CBA972BC29E9A1AB00B9A8A1 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA972BB29E9A1AB00B9A8A1 /* PhotosTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		CB1778CB29DF0ED200F4DBD1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		CB1778CD29E6F43A00F4DBD1 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CB26915729AF7FA20041DE94 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		CB3A6E2229E9D9AB00BBDAF0 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		CBA972BB29E9A1AB00B9A8A1 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,8 @@
 				CB1778C929DF0BC300F4DBD1 /* ProfileTableHeaderView.swift */,
 				CB1778CB29DF0ED200F4DBD1 /* Post.swift */,
 				CB1778CD29E6F43A00F4DBD1 /* ProfileTableViewCell.swift */,
+				CBA972BB29E9A1AB00B9A8A1 /* PhotosTableViewCell.swift */,
+				CB3A6E2229E9D9AB00BBDAF0 /* PhotosViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -199,6 +205,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBA972BC29E9A1AB00B9A8A1 /* PhotosTableViewCell.swift in Sources */,
+				CB3A6E2329E9D9AB00BBDAF0 /* PhotosViewController.swift in Sources */,
 				207E2B1D29892B14006E6DFE /* PostViewController.swift in Sources */,
 				CB1778CE29E6F43A00F4DBD1 /* ProfileTableViewCell.swift in Sources */,
 				CB1778C829D7332800F4DBD1 /* CustomTextFieldView.swift in Sources */,
