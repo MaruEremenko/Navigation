@@ -64,9 +64,13 @@ class PhotosTableViewCell: UITableViewCell {
         return picture
     }()
     
-    private let contentPhoto: UIView = {
-        let content = UIView()
+    private let contentPhoto: UIStackView = {
+        let content = UIStackView()
         content.translatesAutoresizingMaskIntoConstraints = false
+        content.axis = .horizontal
+        content.spacing = 8
+        content.alignment = .fill
+        content.distribution = .fillEqually
         return content
     }()
     
@@ -101,12 +105,11 @@ class PhotosTableViewCell: UITableViewCell {
         contentView.addSubview(contentTitle)
         contentTitle.addSubview(title)
         contentTitle.addSubview(button)
-//        contentView.addSubview(contentPhoto)
-//        contentPhoto.backgroundColor = .black
-//        contentPhoto.addSubview(firstPicture)
-//        contentPhoto.addSubview(secondPicture)
-//        contentPhoto.addSubview(thirdPicture)
-//        contentPhoto.addSubview(fourthPicture)
+        contentView.addSubview(contentPhoto)
+        contentPhoto.addArrangedSubview(firstPicture)
+        contentPhoto.addArrangedSubview(secondPicture)
+        contentPhoto.addArrangedSubview(thirdPicture)
+        contentPhoto.addArrangedSubview(fourthPicture)
         NSLayoutConstraint.activate([
             contentTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentTitle.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -119,35 +122,11 @@ class PhotosTableViewCell: UITableViewCell {
             button.trailingAnchor.constraint(equalTo: contentTitle.trailingAnchor, constant: -12),
             button.centerYAnchor.constraint(equalTo: title.centerYAnchor),
             
-//            contentPhoto.topAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            contentPhoto.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            contentPhoto.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            contentPhoto.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//
-//
-//            firstPicture.leadingAnchor.constraint(equalTo: contentPhoto.leadingAnchor, constant: 12),
-//            firstPicture.bottomAnchor.constraint(equalTo: contentPhoto.bottomAnchor, constant: 12),
-//            firstPicture.topAnchor.constraint(equalTo: contentPhoto.topAnchor),
-//            firstPicture.heightAnchor.constraint(equalToConstant: (contentPhoto.frame.width - 48)/4),
-//            firstPicture.widthAnchor.constraint(equalToConstant: firstPicture.frame.height),
-//
-//            secondPicture.leadingAnchor.constraint(equalTo: contentPhoto.leadingAnchor, constant: 8),
-//            secondPicture.heightAnchor.constraint(equalToConstant: (contentPhoto.frame.width - 48)/4),
-//            secondPicture.widthAnchor.constraint(equalToConstant: secondPicture.frame.height),
-//            secondPicture.topAnchor.constraint(equalTo: contentPhoto.topAnchor),
-//            secondPicture.bottomAnchor.constraint(equalTo: contentPhoto.bottomAnchor),
-//
-//            thirdPicture.leadingAnchor.constraint(equalTo: contentPhoto.leadingAnchor, constant: 8),
-//            thirdPicture.heightAnchor.constraint(equalToConstant: (contentPhoto.frame.width - 48)/4),
-//            thirdPicture.widthAnchor.constraint(equalToConstant: thirdPicture.frame.height),
-//            thirdPicture.topAnchor.constraint(equalTo: contentPhoto.topAnchor),
-//            thirdPicture.bottomAnchor.constraint(equalTo: contentPhoto.bottomAnchor),
-//
-//            fourthPicture.leadingAnchor.constraint(equalTo: contentPhoto.leadingAnchor, constant: 8),
-//            fourthPicture.heightAnchor.constraint(equalToConstant: (contentPhoto.frame.width - 48)/4),
-//            fourthPicture.widthAnchor.constraint(equalToConstant: fourthPicture.frame.height),
-//            fourthPicture.topAnchor.constraint(equalTo: contentPhoto.topAnchor),
-//            fourthPicture.bottomAnchor.constraint(equalTo: contentPhoto.bottomAnchor)
+            contentPhoto.topAnchor.constraint(equalTo: contentTitle.bottomAnchor, constant: 12),
+            contentPhoto.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            contentPhoto.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -12),
+            contentPhoto.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
+            contentPhoto.heightAnchor.constraint(equalToConstant: (contentView.bounds.width - 24) / 4)
         
         ])
     }
