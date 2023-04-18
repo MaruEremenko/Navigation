@@ -37,6 +37,7 @@ class PhotosTableViewCell: UITableViewCell {
         picture.translatesAutoresizingMaskIntoConstraints = false
         picture.layer.cornerRadius = 6
         picture.clipsToBounds = true
+        picture.contentMode = .scaleAspectFill
         return picture
     }()
     
@@ -45,6 +46,7 @@ class PhotosTableViewCell: UITableViewCell {
         picture.translatesAutoresizingMaskIntoConstraints = false
         picture.layer.cornerRadius = 6
         picture.clipsToBounds = true
+        picture.contentMode = .scaleAspectFill
         return picture
     }()
     
@@ -53,6 +55,7 @@ class PhotosTableViewCell: UITableViewCell {
         picture.translatesAutoresizingMaskIntoConstraints = false
         picture.layer.cornerRadius = 6
         picture.clipsToBounds = true
+        picture.contentMode = .scaleAspectFill
         return picture
     }()
     
@@ -61,6 +64,7 @@ class PhotosTableViewCell: UITableViewCell {
         picture.translatesAutoresizingMaskIntoConstraints = false
         picture.layer.cornerRadius = 6
         picture.clipsToBounds = true
+        picture.contentMode = .scaleAspectFill
         return picture
     }()
     

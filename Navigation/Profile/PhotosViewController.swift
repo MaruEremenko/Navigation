@@ -10,16 +10,29 @@ import UIKit
 class PhotosViewController: UIViewController {
     
     private lazy var collection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.dataSource = self
-        collection.delegate = self
-        collection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        return collection
-    }()
+    let spacing: CGFloat = 4
+    let itemSize = NSCollectionLayoutSize(
+        widthDimension: .fractionalWidth(1.0 / 3.0),
+        heightDimension: .fractionalHeight(1.0)
+    )
+    let item = NSCollectionLayoutItem(layoutSize: itemSize)
+    item.contentInsets = .init(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
+
+    let groupSize = NSCollectionLayoutSize(
+        widthDimension: .fractionalWidth(1.0),
+        heightDimension: .fractionalWidth(1.0 / 3.0)
+    )
+    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+    let section = NSCollectionLayoutSection(group: group)
+    let layout = UICollectionViewCompositionalLayout(section: section)
+
+    let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    collection.translatesAutoresizingMaskIntoConstraints = false
+    collection.dataSource = self
+    collection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+    return collection
+}()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +56,8 @@ class PhotosViewController: UIViewController {
         NSLayoutConstraint.activate([
             collection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            collection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            collection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 4),
+            collection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -4)
         ])
     }
 }
@@ -62,12 +75,6 @@ extension PhotosViewController: UICollectionViewDataSource {
     }
 }
 
-extension PhotosViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = ((collectionView.bounds.width - 42) / 3)
-        return CGSize(width: size, height: size)
-    }
-}
 extension PhotosViewController {
     static let photosArray: Array<UIImage> =  {
         var array: [UIImage] = []

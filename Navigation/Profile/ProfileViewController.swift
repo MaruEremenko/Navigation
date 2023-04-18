@@ -76,6 +76,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            tapAction()
+        }
+    }
+    
 }
 
 extension ProfileViewController: PhotoTableViewCellDelegate {
