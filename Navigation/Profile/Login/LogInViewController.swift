@@ -35,6 +35,7 @@ class LogInViewController: UIViewController {
     
     private lazy var loginTextField: CustomTextFieldView = {
         let textField = CustomTextFieldView()
+        textField.textPadding = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         textField.isUserInteractionEnabled = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .systemGray6
@@ -50,6 +51,7 @@ class LogInViewController: UIViewController {
     
     private lazy var passwordTextField: CustomTextFieldView = {
         let textField = CustomTextFieldView()
+        textField.textPadding = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         textField.isUserInteractionEnabled = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .systemGray6

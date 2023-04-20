@@ -84,6 +84,32 @@ class PhotosTableViewCell: UITableViewCell {
         return content
     }()
     
+    private lazy var collection: UICollectionView = {
+        let spacing: CGFloat = 4
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0 / 4.0),
+            heightDimension: .fractionalHeight(0.8)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(1.0 / 4.0)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        let layout = UICollectionViewCompositionalLayout(section: section)
+
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.dataSource = self
+        collection.register(ProfilePhotoCollectionViewCell.self, forCellWithReuseIdentifier: "profilePhotoCollectionViewCell")
+        return collection
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -109,11 +135,7 @@ class PhotosTableViewCell: UITableViewCell {
         contentView.addSubview(contentTitle)
         contentTitle.addSubview(title)
         contentTitle.addSubview(button)
-        contentView.addSubview(contentPhoto)
-        contentPhoto.addArrangedSubview(firstPicture)
-        contentPhoto.addArrangedSubview(secondPicture)
-        contentPhoto.addArrangedSubview(thirdPicture)
-        contentPhoto.addArrangedSubview(fourthPicture)
+        contentView.addSubview(collection)
         NSLayoutConstraint.activate([
             contentTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentTitle.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -126,12 +148,25 @@ class PhotosTableViewCell: UITableViewCell {
             button.trailingAnchor.constraint(equalTo: contentTitle.trailingAnchor, constant: -12),
             button.centerYAnchor.constraint(equalTo: title.centerYAnchor),
             
-            contentPhoto.topAnchor.constraint(equalTo: contentTitle.bottomAnchor, constant: 12),
-            contentPhoto.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            contentPhoto.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -12),
-            contentPhoto.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            contentPhoto.heightAnchor.constraint(equalToConstant: (contentView.bounds.width - 24) / 4)
+            collection.topAnchor.constraint(equalTo: contentTitle.bottomAnchor, constant: 12),
+            collection.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            collection.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -12),
+            collection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
+            collection.heightAnchor.constraint(equalToConstant: (contentView.bounds.width - 24) / 4)
         
         ])
     }
+}
+
+extension PhotosTableViewCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        PhotosViewController.photosArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profilePhotoCollectionViewCell", for: indexPath) as! ProfilePhotoCollectionViewCell
+        cell.fillCell(photo: PhotosViewController.photosArray[indexPath.row])
+        return cell
+    }
+    
 }

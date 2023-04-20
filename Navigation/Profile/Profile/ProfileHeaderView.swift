@@ -45,8 +45,9 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    private lazy var statusTextField: UITextField = {
-        let textField = UITextField()
+    private lazy var statusTextField: CustomTextFieldView = {
+        let textField = CustomTextFieldView()
+        textField.textPadding = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 12
