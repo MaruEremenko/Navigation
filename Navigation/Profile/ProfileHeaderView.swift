@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol ProfileHeaderViewDelegate: AnyObject {
+    func tapAvatarImage(avatarImage: UIImage?)
+}
+
+
 class ProfileHeaderView: UIView {
+    
+    weak var delegate: ProfileHeaderViewDelegate?
     
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
@@ -17,6 +24,7 @@ class ProfileHeaderView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 50
         imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
         return imageView
     } ()
     
@@ -63,9 +71,11 @@ class ProfileHeaderView: UIView {
         button.addTarget(self, action: #selector(showStatus), for: .touchUpInside)
         return button
     }()
+    
     init() {
         super.init(frame: .zero)
         setupView()
+        setGestureRecognizer()
     }
     
     required init?(coder: NSCoder) {
@@ -103,6 +113,16 @@ class ProfileHeaderView: UIView {
             statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             statusTextField.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+    
+    private func setGestureRecognizer() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(pushAvatarImage))
+        avatarImageView.addGestureRecognizer(recognizer)
+    }
+    
+    @objc func pushAvatarImage() {
+        print("Нажатие на картинку")
+        delegate?.tapAvatarImage(avatarImage: avatarImageView.image)
     }
     
     @objc func showStatus() {
