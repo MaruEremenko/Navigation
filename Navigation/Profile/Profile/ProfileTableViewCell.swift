@@ -7,7 +7,15 @@
 
 import UIKit
 
+protocol ProfileTableViewCellDelegate: AnyObject {
+    func addLikes(index: Int)
+}
+
 class ProfileTableViewCell: UITableViewCell{
+    
+    weak var delegate: ProfileTableViewCellDelegate?
+    
+    private var indexPathRow: Int?
     
     private let cellContent: UIView = {
         let content = UIView()
@@ -47,6 +55,7 @@ class ProfileTableViewCell: UITableViewCell{
         likes.translatesAutoresizingMaskIntoConstraints = false
         likes.font = .systemFont(ofSize: 16)
         likes.textColor = .black
+        likes.isUserInteractionEnabled = true
         return likes
     }()
     
@@ -58,10 +67,22 @@ class ProfileTableViewCell: UITableViewCell{
         return views
     }()
     
+    private var likes: Int = 0 {
+        didSet {
+            likesLabel.text = "Likes: \(likes)"
+        }
+    }
+    
+    private var views: Int = 0 {
+        didSet {
+            viewsLabel.text = "Views: \(views)"
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
+        setGestureRecognizer()
     }
     
     required init?(coder: NSCoder) {
@@ -77,12 +98,23 @@ class ProfileTableViewCell: UITableViewCell{
         viewsLabel.text = ""
     }
     
-    func fillCell(post: Post) {
+    func fillCell(post: Post, index: Int) {
+        indexPathRow = index
         titleLabel.text = post.author
         photoImage.image = UIImage(named: post.image)
         descriptionLabel.text = post.description
-        likesLabel.text = "Likes: \(post.likes)"
+        likes = post.likes
         viewsLabel.text = "Views: \(post.views)"
+    }
+    
+    private func setGestureRecognizer() {
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(addLikes))
+        likesLabel.addGestureRecognizer(recognizer)
+    }
+    
+    @objc private func addLikes() {
+        likes = likes + 1
+        delegate?.addLikes(index: indexPathRow!)
     }
     
     private func setupViews() {

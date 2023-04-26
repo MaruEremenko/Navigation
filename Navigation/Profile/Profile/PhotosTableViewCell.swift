@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PhotoTableViewCellDelegate: AnyObject {
-    func tapAction()
+    func tapPhotoAction()
 }
 
 class PhotosTableViewCell: UITableViewCell {
@@ -121,7 +121,7 @@ class PhotosTableViewCell: UITableViewCell {
     }
     
     @objc func goToGallery() {
-        delegate?.tapAction()
+        delegate?.tapPhotoAction()
     }
     
     func fillCell() {
