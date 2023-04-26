@@ -60,7 +60,7 @@ class ProfileHeaderView: UIView {
     
     private lazy var showStatusButton: UIButton = {
        let button = UIButton()
-        button.setTitle("Show status", for: .normal)
+        button.setTitle("Set status", for: .normal)
         button.layer.cornerRadius = 4
         button.layer.shadowOffset.width = 4
         button.layer.shadowOffset.height = 4
@@ -127,7 +127,18 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func showStatus() {
-        print(statusLabel.text ?? "")
+        if statusTextField.text?.isEmpty == false {
+            statusLabel.text = statusTextField.text
+            statusTextField.text = ""
+            statusLabel.textColor = .gray
+            statusTextField.layer.borderColor = UIColor.black.cgColor
+            statusTextField.layer.borderWidth = 1
+        } else {
+            statusTextField.layer.borderColor = UIColor.red.cgColor
+            statusTextField.layer.borderWidth = 1.5
+            statusLabel.text = "Text is empty"
+            statusLabel.textColor = .red
+        }
     }
 }
 

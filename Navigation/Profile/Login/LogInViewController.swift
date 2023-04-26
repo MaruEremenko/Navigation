@@ -11,6 +11,9 @@ class LogInViewController: UIViewController {
     
     let notification = NotificationCenter.default
     
+    private let login = "Tom"
+    private let password = "12345678"
+    
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isUserInteractionEnabled = true
@@ -88,9 +91,35 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    private let discriptionLabel: UILabel = {
+        let discription = UILabel()
+        discription.translatesAutoresizingMaskIntoConstraints = false
+        discription.text = "Password must be more than 8 symbols"
+        discription.textColor = .red
+        discription.font = .systemFont(ofSize: 15)
+        discription.alpha = 0
+        return discription
+    }()
+    
+    private let alert = UIAlertController(title: "Error!", message: "Wrong login or password", preferredStyle: .alert)
+    private let okAction = UIAlertAction(title: "Ok", style: .default)
+    
     @objc func logInButtonPressed() {
-        let profileVC = ProfileViewController()
-        self.navigationController?.pushViewController(profileVC, animated: true)
+        if loginTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false && passwordTextField.text?.count ?? 0 >= 8 && loginTextField.text == login && passwordTextField.text == password {
+            let profileVC = ProfileViewController()
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        } else if loginTextField.text != login || passwordTextField.text != password {
+            present(alert, animated: true)
+        }
+        if passwordTextField.text?.count ?? 0 < 8 {
+            discriptionLabel.alpha = 1
+        } else if passwordTextField.text?.count ?? 0 >= 8 {
+            discriptionLabel.alpha = 0
+        }
+            loginTextField.layer.borderColor = UIColor.red.cgColor
+            loginTextField.layer.borderWidth = 0.8
+            passwordTextField.layer.borderColor = UIColor.red.cgColor
+            passwordTextField.layer.borderWidth = 0.8
     }
     
     override func viewDidLoad() {
@@ -98,6 +127,7 @@ class LogInViewController: UIViewController {
         self.view.backgroundColor = .white
         title = "Login"
         setupView()
+        alert.addAction(okAction)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,6 +159,7 @@ class LogInViewController: UIViewController {
         contentView.addSubview(vkLogo)
         contentView.addSubview(loginTextField)
         contentView.addSubview(passwordTextField)
+        contentView.addSubview(discriptionLabel)
         contentView.addSubview(logInButton)
         NSLayoutConstraint.activate([
             
@@ -159,7 +190,12 @@ class LogInViewController: UIViewController {
             passwordTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             
-            logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
+            discriptionLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
+            discriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            discriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            discriptionLabel.heightAnchor.constraint(equalToConstant: 15),
+            
+            logInButton.topAnchor.constraint(equalTo: discriptionLabel.bottomAnchor, constant: 10),
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             logInButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

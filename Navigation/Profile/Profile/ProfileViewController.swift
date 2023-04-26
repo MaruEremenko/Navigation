@@ -1,10 +1,10 @@
 import UIKit
 
-class ProfileViewController: UIViewController, ProfileHeaderViewDelegate {
+class ProfileViewController: UIViewController, ProfileHeaderViewDelegate, ProfileTableViewCellDelegate {
     
     // MARK: - Properties
     
-    let arrayPosts: [Post] = Post.getArray()
+    var arrayPosts: [Post] = Post.getArray()
     
     let table: UITableView = UITableView(frame: .zero, style: .grouped)
     
@@ -93,6 +93,10 @@ class ProfileViewController: UIViewController, ProfileHeaderViewDelegate {
         }
     }
     
+    func addLikes(index: Int) {
+        arrayPosts[index].likes += 1
+    }
+    
 }
 
 // MARK: - Extensions
@@ -114,7 +118,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "profileTableViewCell", for: indexPath) as! ProfileTableViewCell
-            cell.fillCell(post: arrayPosts[indexPath.row])
+            cell.fillCell(post: arrayPosts[indexPath.row], index: indexPath.row)
+            cell.delegate = self
             return cell
         }
     }
@@ -147,14 +152,23 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            tapAction()
+            tapPhotoAction()
+        } else {
+            tapPostAction(post: arrayPosts[indexPath.row], number: indexPath.row)
         }
     }
     
+    func tapPostAction(post: Post, number: Int) {
+        let controller = ProfilePostViewController()
+        controller.fillPost(post: post)
+        navigationController?.pushViewController(controller, animated: true)
+        arrayPosts[number].views += 1
+        table.reloadData()
+    }
 }
 
 extension ProfileViewController: PhotoTableViewCellDelegate {
-    func tapAction() {
+    func tapPhotoAction() {
         navigationController?.pushViewController(PhotosViewController(), animated: true)
     }
     
